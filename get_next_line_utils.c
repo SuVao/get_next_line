@@ -14,32 +14,32 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-    char	*str;
-    int     len;
-    unsigned int	j;
-    unsigned int	i;
+	char			*str;
+	int				len;
+	unsigned int	j;
+	unsigned int	i;
 
-    if (!s1 || !s2)
-        return (0);
-    len = ft_strlen(s1) + ft_strlen(s2);
-    str = (char *)malloc(sizeof(char) * (len + 1));
-    if (!str)
-        return (NULL);
-    i = 0;
-    j = 0;
-    while (s1[i])
-    {
-        str[i] = s1[i];
-        i++;
-    }
-    while (s2[j])
-    {
-        str[i] = s2[j];
-        i++;
-        j++;
-    }
-    str[i] = '\0';
-    return (str);
+	if (!s2 || !s1)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
 char	*ft_strdup(const char *s1)
@@ -60,6 +60,17 @@ char	*ft_strdup(const char *s1)
     return (str);
 }
 
+void	ft_bzero(void *str, size_t	num)
+{
+	unsigned char	*char_str;
+	size_t			i;
+
+	i = 0;
+	char_str = str;
+	while (i < num)
+		char_str[i++] = '\0';
+}
+
 char	*ft_strchr(const char *s, int c)
 {
     while (*s)
@@ -75,12 +86,14 @@ char	*ft_strchr(const char *s, int c)
 
 unsigned int	ft_strlen(const char *s)
 {
-    unsigned int	i;
+	unsigned int	i;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_substr(char const *s, unsigned int start, unsigned int len)
