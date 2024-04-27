@@ -24,11 +24,10 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
-unsigned int	ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, unsigned int len);
-void	ft_bzero(void *str, size_t	num);
 
 #endif

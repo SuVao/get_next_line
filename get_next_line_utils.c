@@ -12,34 +12,34 @@
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
-	char			*str;
-	int				len;
-	unsigned int	j;
-	unsigned int	i;
+	char	*str3;
+	char	*ptr3;
+	char	*ptr1;
+	int		i;
+	int		j;
 
-	if (!s2 || !s1)
+	if (!s1 || !s2)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
+	str3 = malloc(sizeof(*str3) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str3)
+	{
+		free (s1);
 		return (NULL);
-	i = 0;
+	}
+	ptr3 = str3;
+    ptr1 = s1;
+    i = 0;
+    j = 0;
+	while (ptr1[j])
+		ptr3[i++] = ptr1[j++];
 	j = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
+    while (s2[j])
+		ptr3[i++] = s2[j++];
+	ptr3[i] = '\0';
+	free (s1);
+	return (&str3[i]);
 }
 
 char	*ft_strdup(const char *s1)
@@ -60,19 +60,10 @@ char	*ft_strdup(const char *s1)
     return (str);
 }
 
-void	ft_bzero(void *str, size_t	num)
-{
-	unsigned char	*char_str;
-	size_t			i;
-
-	i = 0;
-	char_str = str;
-	while (i < num)
-		char_str[i++] = '\0';
-}
-
 char	*ft_strchr(const char *s, int c)
 {
+    if (!s)
+		return (NULL);
     while (*s)
     {
         if (*s == (char)c)
@@ -84,9 +75,9 @@ char	*ft_strchr(const char *s, int c)
     return (NULL);
 }
 
-unsigned int	ft_strlen(const char *s)
+size_t  ft_strlen(const char *s)
 {
-	unsigned int	i;
+    size_t  i;
 
 	i = 0;
 	if (s == NULL)
