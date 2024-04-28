@@ -54,14 +54,18 @@ char	*get_nl(int fd, char *s)
 	while (i < BUFFER_SIZE)
 		buffer[i++] = '\0';
 	bytes_read = 1;
-	while (!ft_strchr(buffer, '\0') && bytes_read)
+	while (!ft_strchr(buffer, '\n') && bytes_read)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		printf("bytes: %d \n", bytes_read);
 		if (bytes_read < 0 || (!bytes_read && !s))
 			return (NULL);
 		buffer[bytes_read] = '\0';
 		if (!s)
+		{
 			s = ft_strdup(buffer);
+			free (buffer);
+		}
 		else
 			s = ft_strjoin(s, buffer);
 		if (!s)
@@ -88,11 +92,9 @@ char	*get_next_line(int fd)
 	if (ori_str[i] == '\n')
 		i++;
 	final_boss = ft_substr(ori_str, 0, i);
-	printf("final boss: %s \n", final_boss);
 	rest_of_chars = ft_substr(ori_str, i, ft_strlen(ori_str) - i);
 	free (ori_str);
 	ori_str = rest_of_chars;
-	printf("str: %s \n", final_boss);
 	return (final_boss);
 }
 
@@ -131,7 +133,7 @@ char	*get_next_line(int fd)
 	return (get_line(rest));
 } */
 
-int	main()
+/* int	main()
 {
 	int fd;
 	char	*line;
@@ -139,6 +141,23 @@ int	main()
 	fd = open("test.txt", O_RDONLY);
 	while ((line = get_next_line(fd)))
 		printf("linha: %s \n", line++);
+	close(fd);
+	return (0);
+} */
+
+int	main()
+{
+	int		fd;
+	char	*line;
+
+	fd = open("test.txt", O_RDONLY);
+	if (fd < 0)
+		return (1);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("Line: %s\n", line);
+		free(line);
+	}
 	close(fd);
 	return (0);
 }

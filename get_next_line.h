@@ -28,6 +28,6 @@ char	*ft_strjoin(char *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-char	*ft_substr(char const *s, unsigned int start, unsigned int len);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 
 #endif
