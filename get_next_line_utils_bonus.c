@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pesilva- <pesilva-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 08:56:31 by pesilva-          #+#    #+#             */
-/*   Updated: 2024/04/25 08:56:31 by pesilva-         ###   ########.fr       */
+/*   Created: 2024/04/29 11:56:21 by pesilva-          #+#    #+#             */
+/*   Updated: 2024/04/29 11:56:21 by pesilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin(char *s1, char const *s2)
 {

@@ -57,15 +57,11 @@ char	*get_nl(int fd, char *s)
 	while (!ft_strchr(buffer, '\n') && bytes_read)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		printf("bytes: %d \n", bytes_read);
 		if (bytes_read < 0 || (!bytes_read && !s))
 			return (NULL);
 		buffer[bytes_read] = '\0';
 		if (!s)
-		{
 			s = ft_strdup(buffer);
-			free (buffer);
-		}
 		else
 			s = ft_strjoin(s, buffer);
 		if (!s)
