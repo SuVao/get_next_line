@@ -26,13 +26,13 @@ char	*ft_strjoin(char *s1, char const *s2)
 	if (!str3)
 		return (NULL);
 	ptr3 = str3;
-    ptr1 = s1;
-    i = 0;
-    j = 0;
+	ptr1 = s1;
+	i = 0;
+	j = 0;
 	while (ptr1[j])
 		ptr3[i++] = ptr1[j++];
 	j = 0;
-    while (s2[j])
+	while (s2[j])
 		ptr3[i++] = s2[j++];
 	free (s1);
 	ptr3[i] = '\0';
@@ -72,9 +72,9 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t  ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t  i;
+	size_t	i;
 
 	i = 0;
 	if (s == NULL)
@@ -84,7 +84,7 @@ size_t  ft_strlen(const char *s)
 	return (i + (s[i] == '\n'));
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, size_t start, size_t len)
 {
 	char		*string;
 	size_t		i;
@@ -105,3 +105,30 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	string[i] = '\0';
 	return (string);
 }
+
+/* void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	const unsigned char	*s;
+	unsigned char		*d;
+	size_t				i;
+
+	i = 0;
+	if (!dst && !src)
+		return (NULL);
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	if (s < d)
+	{
+		while (len--)
+			d[len] = s[len];
+	}
+	else
+	{
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dst);
+} */

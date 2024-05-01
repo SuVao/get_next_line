@@ -19,19 +19,19 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-#ifndef BUFFER_SIZE
+# ifndef BUFFER_SIZE
 # define BUFFER_SIZE 10
-#endif
+# endif
 
-#ifndef MAX_FILES
+# ifndef MAX_FILES
 # define MAX_FILES 10
-#endif
+# endif
 
 char	*get_next_line_bonus(int fd);
 char	*ft_strjoin(char *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
+char	*ft_substr(const char *s, size_t start, size_t len);
 
 #endif

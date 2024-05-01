@@ -26,13 +26,13 @@ char	*ft_strjoin(char *s1, char const *s2)
 	if (!str3)
 		return (NULL);
 	ptr3 = str3;
-    ptr1 = s1;
-    i = 0;
-    j = 0;
+	ptr1 = s1;
+	i = 0;
+	j = 0;
 	while (ptr1[j])
 		ptr3[i++] = ptr1[j++];
 	j = 0;
-    while (s2[j])
+	while (s2[j])
 		ptr3[i++] = s2[j++];
 	free (s1);
 	ptr3[i] = '\0';
@@ -72,9 +72,9 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t  ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t  i;
+	size_t	i;
 
 	i = 0;
 	if (s == NULL)

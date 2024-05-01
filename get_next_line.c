@@ -12,6 +12,76 @@
 
 #include "get_next_line.h"
 
+char	*get_nl(int fd, char *s)
+{
+	char	buffer[BUFFER_SIZE + 1];
+	int		bytes_read;
+	int		i;
+
+	i = 0;
+	while (i < BUFFER_SIZE)
+		buffer[i++] = '\0';
+	bytes_read = 1;
+	while (!ft_strchr(buffer, '\n') && bytes_read)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read < 0 || (!bytes_read && !s))
+			return (NULL);
+		if (!s)
+			s = ft_strdup(buffer);
+		else
+			s = ft_strjoin(s, buffer);
+		if (!s)
+			return (NULL);
+	}
+	return (s);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*ori_str;
+	char		*final_boss;
+	char		*rest_of_chars;
+	size_t		i;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	ori_str = get_nl(fd, ori_str);
+	if (!ori_str)
+		return (NULL);
+	i = 0;
+	while (ori_str[i] != '\n')
+		i++;
+	if (ori_str[i] == '\n')
+		i++;
+	final_boss = ft_substr(ori_str, 0, i);
+	rest_of_chars = ft_substr(ori_str, i, ft_strlen(ori_str) - i);
+	printf("rest: %s \n", rest_of_chars);
+	free (ori_str);
+	ori_str = rest_of_chars;
+	return (final_boss);
+}
+
+int	main()
+{
+	int		fd;
+	char	*line;
+
+	fd = open("test.txt", O_RDONLY);
+	if (fd < 0)
+		return (1);
+/* 	line = get_next_line(fd);
+	free(line); */
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("tamanho: %zu \n", ft_strlen(line));
+		printf("Line: %s\n", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
+}
+
 /*static char	*get_line(char *str)
 {
 	char	*line;
@@ -43,56 +113,6 @@ char	*get_rest(char *s)
 	free (s);
 	return (s2);
 }*/
-
-char	*get_nl(int fd, char *s)
-{
-	char	buffer[BUFFER_SIZE + 1];
-	int		bytes_read;
-	int		i;
-
-	i = 0;
-	while (i < BUFFER_SIZE)
-		buffer[i++] = '\0';
-	bytes_read = 1;
-	while (!ft_strchr(buffer, '\n') && bytes_read)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0 || (!bytes_read && !s))
-			return (NULL);
-		buffer[bytes_read] = '\0';
-		if (!s)
-			s = ft_strdup(buffer);
-		else
-			s = ft_strjoin(s, buffer);
-		if (!s)
-			return (NULL);
-	}
-	return (s);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*ori_str;
-	char		*final_boss;
-	char		*rest_of_chars;
-	int			i;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	ori_str = get_nl(fd, ori_str);
-	if (!ori_str)
-		return (NULL);
-	i = 0;
-	while (ori_str[i] != '\0' && ori_str[i])
-		i++;
-	if (ori_str[i] == '\n')
-		i++;
-	final_boss = ft_substr(ori_str, 0, i);
-	rest_of_chars = ft_substr(ori_str, i, ft_strlen(ori_str) - i);
-	free (ori_str);
-	ori_str = rest_of_chars;
-	return (final_boss);
-}
 
 /* char	*get_next_line(int fd)
 {
@@ -140,20 +160,3 @@ char	*get_next_line(int fd)
 	close(fd);
 	return (0);
 } */
-
-int	main()
-{
-	int		fd;
-	char	*line;
-
-	fd = open("test.txt", O_RDONLY);
-	if (fd < 0)
-		return (1);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("Line: %s\n", line);
-		free(line);
-	}
-	close(fd);
-	return (0);
-}
