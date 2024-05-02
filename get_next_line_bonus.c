@@ -20,7 +20,7 @@ char	*get_newl(int fd, char *s)
 
 	i = 0;
 	while (i < BUFFER_SIZE)
-			buffer[i++] = '\0';
+		buffer[i++] = '\0';
 	bytes_read = 1;
 	while (!ft_strchr(buffer, '\n') && bytes_read)
 	{
@@ -57,12 +57,10 @@ char	*get_next_line_bonus(int fd)
 		i++;
 	final_boss2 = ft_substr(str_file[fd], 0, i);
 	paparestos = ft_substr(str_file[fd], i, ft_strlen(str_file[fd] - 1));
-	printf("pararestos: %s \n ", paparestos);
 	free (str_file[fd]);
 	str_file[fd] = paparestos;
 	return (final_boss2);
 }
-
 /* int	main(void)
 {
 	int		fd1, fd2;
@@ -92,41 +90,5 @@ char	*get_next_line_bonus(int fd)
 	}
 	close(fd2);
 	return (0);
-} */
-
-
-/* 
-void	putnumber(int number) {
-	int i;
-	char	ascii[12];
-
-	i = 10;
-	while (number != 0 || i < 11) {
-		ascii[i] = (number % 10) + 48;
-		number /= 10;
-		i--;
-	}
-	write(1, &ascii[i], i - 11);
 }
-
-
-
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

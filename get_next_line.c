@@ -27,6 +27,7 @@ char	*get_nl(int fd, char *s)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0 || (!bytes_read && !s))
 			return (NULL);
+		buffer[bytes_read] = '\0';
 		if (!s)
 			s = ft_strdup(buffer);
 		else
@@ -50,19 +51,18 @@ char	*get_next_line(int fd)
 	if (!ori_str)
 		return (NULL);
 	i = 0;
-	while (ori_str[i] != '\n')
+	while (ori_str[i] != '\n' && ori_str[i])
 		i++;
 	if (ori_str[i] == '\n')
 		i++;
 	final_boss = ft_substr(ori_str, 0, i);
 	rest_of_chars = ft_substr(ori_str, i, ft_strlen(ori_str) - i);
-	printf("rest: %s \n", rest_of_chars);
 	free (ori_str);
 	ori_str = rest_of_chars;
 	return (final_boss);
 }
 
-int	main()
+/* int	main()
 {
 	int		fd;
 	char	*line;
@@ -70,93 +70,12 @@ int	main()
 	fd = open("test.txt", O_RDONLY);
 	if (fd < 0)
 		return (1);
-/* 	line = get_next_line(fd);
-	free(line); */
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("tamanho: %zu \n", ft_strlen(line));
 		printf("Line: %s\n", line);
 		free(line);
 	}
 	close(fd);
 	return (0);
 }
-
-/*static char	*get_line(char *str)
-{
-	char	*line;
-	int		i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	line = ft_substr(str, 0, i);
-	return (line);
-}
-
-char	*get_rest(char *s)
-{
-	int	i;
-	int len;
-	char *s2;
-
-	i = 0;
-	while (s[i] != '\n' && s[i])
-		i++;
-	len = ft_strlen(s) - i;
-	s2 = malloc(sizeof(char *) * len + 1);
-	if (!s2)
-		return (NULL);
-	s2 = ft_substr(s, i, len);
-	free (s);
-	return (s2);
-}*/
-
-/* char	*get_next_line(int fd)
-{
-	static char	*rest;
-	char		*buffer;
-	char		*temp;
-	int			bytes_read;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	bytes_read = 1;
-	while (!ft_strchr(buffer, '\n') && bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes_read] = '\0';
-		if (!buffer)
-			buffer = ft_strdup(temp);
-		else
-			buffer = 
-		rest = get_line(buffer);
-		temp = rest;
-		free(rest);
-		rest = temp;
-	}
-	free (buffer);
-	return (get_line(rest));
-} */
-
-/* int	main()
-{
-	int fd;
-	char	*line;
-
-	fd = open("test.txt", O_RDONLY);
-	while ((line = get_next_line(fd)))
-		printf("linha: %s \n", line++);
-	close(fd);
-	return (0);
-} */
+ */

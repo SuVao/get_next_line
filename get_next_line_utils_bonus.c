@@ -79,9 +79,9 @@ size_t	ft_strlen(const char *s)
 	i = 0;
 	if (s == NULL)
 		return (0);
-	while (s[i] != '\n' && s[i])
+	while (s[i])
 		i++;
-	return (i + (s[i] == '\n'));
+	return (i);
 }
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)

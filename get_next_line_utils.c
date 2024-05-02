@@ -14,29 +14,25 @@
 
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	char	*str3;
-	char	*ptr3;
-	char	*ptr1;
+	char	*s3;
 	int		i;
 	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	str3 = malloc(sizeof(*str3) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str3)
+	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!s3)
 		return (NULL);
-	ptr3 = str3;
-	ptr1 = s1;
-	i = 0;
 	j = 0;
-	while (ptr1[j])
-		ptr3[i++] = ptr1[j++];
+	i = 0;
+	while (s1[j])
+		s3[i++] = s1[j++];
 	j = 0;
 	while (s2[j])
-		ptr3[i++] = s2[j++];
+		s3[i++] = s2[j++];
+	s3[i] = '\0';
 	free (s1);
-	ptr3[i] = '\0';
-	return (str3);
+	return (s3);
 }
 
 char	*ft_strdup(const char *s1)
@@ -77,58 +73,29 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	if (s == NULL)
-		return (0);
-	while (s[i] != '\n' && s[i])
+	while (s[i])
 		i++;
-	return (i + (s[i] == '\n'));
+	return (i);
 }
 
-char	*ft_substr(const char *s, size_t start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char		*string;
-	size_t		i;
+	size_t	j;
+	char	*str;
 
 	if (!s || !len || start >= ft_strlen(s))
 		return (NULL);
-	if (start + len > ft_strlen(s))
+	if (ft_strlen(s) < len + start)
 		len = ft_strlen(s) - start;
-	string = (char *)malloc((len + 1) * sizeof(char));
-	if (!string)
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
-	i = 0;
-	while (i < len)
+	j = 0;
+	while (j < len)
 	{
-		string[i] = s[i + start];
-		i++;
+		str[j] = s[start + j];
+		j++;
 	}
-	string[i] = '\0';
-	return (string);
+	str[j] = '\0';
+	return (str);
 }
-
-/* void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	const unsigned char	*s;
-	unsigned char		*d;
-	size_t				i;
-
-	i = 0;
-	if (!dst && !src)
-		return (NULL);
-	s = (unsigned char *)src;
-	d = (unsigned char *)dst;
-	if (s < d)
-	{
-		while (len--)
-			d[len] = s[len];
-	}
-	else
-	{
-		while (i < len)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
-	return (dst);
-} */
