@@ -56,11 +56,12 @@ char	*get_next_line_bonus(int fd)
 	if (str_file[fd][i] == '\n')
 		i++;
 	final_boss2 = ft_substr(str_file[fd], 0, i);
-	paparestos = ft_substr(str_file[fd], i, ft_strlen(str_file[fd] - 1));
+	paparestos = ft_substr(str_file[fd], i, ft_strlen(str_file[fd]) - i);
 	free (str_file[fd]);
 	str_file[fd] = paparestos;
 	return (final_boss2);
 }
+
 /* int	main(void)
 {
 	int		fd1, fd2;
@@ -90,5 +91,29 @@ char	*get_next_line_bonus(int fd)
 	}
 	close(fd2);
 	return (0);
-}
- */
+} */
+
+/* int main()
+{
+    int     fd, i;
+    char    *line;
+
+    fd = open("test.txt", O_RDWR);
+    i = 1;
+    line = get_next_line(fd);
+    printf("%s\n", line);
+    write(1, "endline", 7);
+    free(line);
+    line = get_next_line(fd);
+    printf("%s\n", line);
+    write(1, "endline", 7);
+    free(line);
+    while ((line = get_next_line(fd)))
+    {
+        printf("LINE %d:\n", i);
+        printf("%s\n", line);
+        free(line);
+        i++;
+    }
+    close(fd);
+} */

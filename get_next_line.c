@@ -45,7 +45,7 @@ char	*get_next_line(int fd)
 	char		*rest_of_chars;
 	size_t		i;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	ori_str = get_nl(fd, ori_str);
 	if (!ori_str)

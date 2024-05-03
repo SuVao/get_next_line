@@ -14,29 +14,25 @@
 
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	char	*str3;
-	char	*ptr3;
-	char	*ptr1;
+	char	*s3;
 	int		i;
 	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	str3 = malloc(sizeof(*str3) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str3)
+	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!s3)
 		return (NULL);
-	ptr3 = str3;
-	ptr1 = s1;
-	i = 0;
 	j = 0;
-	while (ptr1[j])
-		ptr3[i++] = ptr1[j++];
+	i = 0;
+	while (s1[j])
+		s3[i++] = s1[j++];
 	j = 0;
 	while (s2[j])
-		ptr3[i++] = s2[j++];
+		s3[i++] = s2[j++];
+	s3[i] = '\0';
 	free (s1);
-	ptr3[i] = '\0';
-	return (str3);
+	return (s3);
 }
 
 char	*ft_strdup(const char *s1)
@@ -77,8 +73,6 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	if (s == NULL)
-		return (0);
 	while (s[i])
 		i++;
 	return (i);

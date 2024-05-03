@@ -18,13 +18,14 @@
 # include <stddef.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 3000000
 # endif
 
 # ifndef MAX_FILES
-#  define MAX_FILES 10
+#  define MAX_FILES 4000
 # endif
 
 char	*get_next_line_bonus(int fd);
