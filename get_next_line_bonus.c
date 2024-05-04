@@ -38,7 +38,7 @@ char	*get_newl(int fd, char *s)
 	return (s);
 }
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*str_file[MAX_FILES];
 	char		*final_boss2;
