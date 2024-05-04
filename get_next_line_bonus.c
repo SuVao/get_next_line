@@ -91,8 +91,8 @@ char	*get_next_line_bonus(int fd)
 	}
 	close(fd2);
 	return (0);
-} */
-
+}
+ */
 /* int main()
 {
     int     fd, i;

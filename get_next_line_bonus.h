@@ -21,7 +21,7 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3000000
+#  define BUFFER_SIZE 1234567
 # endif
 
 # ifndef MAX_FILES

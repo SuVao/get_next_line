@@ -18,9 +18,10 @@
 # include <stddef.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000000
+#  define BUFFER_SIZE 100000
 # endif
 
 char	*get_next_line(int fd);
